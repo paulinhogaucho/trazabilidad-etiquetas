@@ -1,22 +1,33 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import SerialNumberInput from './SerialNumberInput';
+import CameraCapture from './CameraCapture';
+import ImageUploader from './ImageUploader';
 
 function App() {
+  const [serialNumber, setSerialNumber] = useState('');
+  const [images, setImages] = useState([]);
+
+  const handleSerialNumberSubmit = (serial) => {
+    setSerialNumber(serial);
+  };
+
+  const handleImagesUpload = (newImages) => {
+    setImages(newImages);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Trazabilidad de etiquetas</h1>
+        {!serialNumber ? (
+          <SerialNumberInput onSubmit={handleSerialNumberSubmit} />
+        ) : (
+          <>
+            <CameraCapture onImagesCapture={handleImagesUpload} />
+            <ImageUploader serialNumber={serialNumber} images={images} />
+          </>
+        )}
       </header>
     </div>
   );
