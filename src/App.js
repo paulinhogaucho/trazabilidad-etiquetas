@@ -24,13 +24,14 @@ function App() {
           <SerialNumberInput onSubmit={handleSerialNumberSubmit} />
         ) : (
           <>
-            <CameraCapture onImagesCapture={handleImagesUpload} />
-            <ImageUploader serialNumber={serialNumber} images={images} />
+<CameraCapture onImagesCapture={handleImagesUpload} />
+<ImageUploader serialNumber={serialNumber} images={images} />
           </>
         )}
       </header>
     </div>
   );
 }
+
 
 export default App;
